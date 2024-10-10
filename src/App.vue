@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style>
+
+body, html{
+  overflow: hidden;
+}
 body{
   background-color: #2c3e50;
 }
@@ -25,6 +29,5 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #ffffff;
-  margin-top: 60px;
 }
 </style>

@@ -30,8 +30,12 @@ export default {
           this.time = ((this.finalTime - this.initialTime) / 1000).toFixed(2)
           this.timerRunning = false
 
+          // emit event to generate a new Scramble
+          //this.$emit("newScramble")
+
           this.times.push(this.time);
           localStorage.setItem('times',this.times.join('|'))
+          this.$emit("newScramble")
           return
         }
 
@@ -106,6 +110,7 @@ h1 {
   /*font-family: digi;*/
   font-family: monospace;
   font-size: 100px;
+  cursor: default;
 }
 
 .green {
