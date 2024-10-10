@@ -12,7 +12,7 @@
         </div>
         <div class="ao-best">
           <span class="tittle ao">Best</span>
-          <span class="ao">&nbsp;&nbsp;Time: {{ getAo(5) }}</span>
+          <span class="ao">&nbsp;&nbsp;Time: {{ getPB(5) }}</span>
           <span class="ao">&nbsp;&nbsp;&nbsp;Ao5: {{ getAo(5) }}</span>
           <span class="ao">&nbsp;&nbsp;Ao12: {{ getAo(12) }}</span>
           <span class="ao">&nbsp;Ao100: {{ getAo(100) }}</span>
@@ -38,7 +38,7 @@
             <th class="th-delete">Delete</th>
           </tr>
           <tr v-for="(time, index) in times.toReversed()" :key="index">
-            <td>{{ index }}</td>
+            <td>{{ index+1 }}</td>
             <td>{{ time }}</td>
             <td>X</td>
           </tr>
@@ -61,6 +61,9 @@ export default {
   methods: {
     getCurrentTime() {
       return this.times[this.times.length - 1]
+    },
+    getPB(){
+      return this.times.toSorted().slice(0,1)[0]
     },
     getAo(count) {
       if (this.times.length < count) {
