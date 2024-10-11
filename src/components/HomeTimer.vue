@@ -20,7 +20,7 @@
 
     <div class="records-container">
 
-      <Records :times="getTimerTimes()" />
+      <Records :times="getTimerTimes()" @delete-time="deleteTime" @clear-times="clearTimes"/>
     </div>
     <!--button v-on:click="clearTimes">Clear Times</button-->
   </div>
@@ -61,6 +61,10 @@ export default {
     },
     getTimerTimes() {
       return this.$refs.timer ? this.$refs.timer.times : [];
+    },
+    deleteTime(index){
+      console.log("deleteTime",this.$refs.timer.times)
+      this.$refs.timer.times.splice(index, 1)
     }
   }
 };

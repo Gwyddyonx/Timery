@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="">
     <h1 :class="timerRunning || isPrepared ? 'green' : ''">{{ time }}</h1>
   </div>
 </template>
@@ -30,11 +30,16 @@ export default {
           this.time = ((this.finalTime - this.initialTime) / 1000).toFixed(2)
           this.timerRunning = false
 
-          // emit event to generate a new Scramble
-          //this.$emit("newScramble")
+          let new_time = {
+            time: this.time,
+            ao5: this.getAo(5),
+            ao12: this.getAo(12),
+            ao100: this.getAo(100)
+          }
 
-          this.times.push(this.time);
-          localStorage.setItem('times',this.times.join('|'))
+          this.times.push(new_time)
+
+          localStorage.setItem('times', JSON.stringify(this.times))
           this.$emit("newScramble")
           return
         }
@@ -72,7 +77,6 @@ export default {
       window.setInterval(() => {
         if (this.timerRunning) {
           this.finalTime = new Date()
-          //console.log(this.finalTime - this.initialTime,Math.round((this.finalTime - this.initialTime) / 1000, 2))
           this.time = ((this.finalTime - this.initialTime) / 1000).toFixed(2)
         }
 
@@ -85,16 +89,46 @@ export default {
       this.time = 0.00
       this.initialTime = new Date()
       this.finalTime = new Date()
+    },
+    getAo(count) {
+      if (this.times.length < count - 1) {
+        return "-"
+      }
+
+      let lastSolves = this.times
+        .toReversed()
+        .slice(0, count - 1)
+        .map(function (t) {
+          return parseFloat(t.time)
+        })
+
+      // Adding last time to array
+      lastSolves.push(parseFloat(this.time))
+
+      //remove de max and min values 
+      let min = Math.min(...lastSolves);
+      let max = Math.max(...lastSolves);
+      lastSolves.splice(lastSolves.indexOf(min), 1);
+      lastSolves.splice(lastSolves.indexOf(max), 1);
+
+      let sum = lastSolves.reduce((accum, currnt) => {
+        return parseFloat(accum) + parseFloat(currnt)
+      }, 0)
+
+      let avg = sum / (count - 2)
+
+      return avg.toFixed(2);
+
     }
+
   },
   mounted() {
     this.setBlinds()
-    this.times = localStorage.getItem("times") != undefined ? localStorage.getItem("times").split("|") : [] 
+    this.times = localStorage.getItem("times") != undefined ? JSON.parse(localStorage.getItem("times")) : []
   },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @font-face {
   font-family: digi;

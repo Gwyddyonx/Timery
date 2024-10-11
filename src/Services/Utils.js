@@ -5,7 +5,7 @@ export default class Utils {
 
     getScramble() {
         let scramble = []
-        let numberOfMoves = 20 // Scramble oficial suele tener 20 movimientos
+        let numberOfMoves = 20
         let lastMove = null
         let lastAxis = null
 

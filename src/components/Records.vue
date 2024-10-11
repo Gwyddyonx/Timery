@@ -1,32 +1,25 @@
 <template>
   <div class="records-container">
 
-    <div>
+    <div class="resume-container">
       <div class="resume">
         <div class="ao-container">
           <span class="tittle ao">Current</span>
-          <span class="ao">&nbsp;Time: {{ getCurrentTime(0) }}</span>
-          <span class="ao">&nbsp;&nbsp;Ao5: {{ getAo(5) }}</span>
-          <span class="ao">&nbsp;Ao12: {{ getAo(12) }}</span>
-          <span class="ao">Ao100: {{ getAo(100) }}</span>
+          <span class="ao">&nbsp;Time: {{ getCurrentTime().time ?? '' }}</span>
+          <span class="ao">&nbsp;&nbsp;Ao5: {{ getCurrentTime().ao5 ?? '' }}</span>
+          <span class="ao">&nbsp;Ao12: {{ getCurrentTime().ao12 ?? '' }}</span>
+          <span class="ao">Ao100: {{ getCurrentTime().ao100 ?? '' }}</span>
         </div>
         <div class="ao-best">
           <span class="tittle ao">Best</span>
           <span class="ao">&nbsp;&nbsp;Time: {{ getPB(5) }}</span>
-          <span class="ao">&nbsp;&nbsp;&nbsp;Ao5: {{ getAo(5) }}</span>
-          <span class="ao">&nbsp;&nbsp;Ao12: {{ getAo(12) }}</span>
-          <span class="ao">&nbsp;Ao100: {{ getAo(100) }}</span>
+          <span class="ao">&nbsp;&nbsp;&nbsp;Ao5: {{ getCurrentTime(5).ao5 ?? '' }}</span>
+          <span class="ao">&nbsp;&nbsp;Ao12: {{ getCurrentTime(12).ao5 ?? '' }}</span>
+          <span class="ao">&nbsp;Ao100: {{ getCurrentTime(100).ao5 ?? '' }}</span>
         </div>
       </div>
       <button v-on:click="clearTimes">Clear Times</button>
     </div>
-
-
-
-    <!--div class="history">
-      <span id="history-title">Solves: {{ times.length }}</span>
-      <span v-for="(time, index) in times.toReversed()" :key="index">{{ time }}</span>
-    </div-->
 
     <div class="history">
       <span id="history-title">Solves: {{ times.length }}</span>
@@ -35,12 +28,20 @@
           <tr>
             <th class="th1">#</th>
             <th class="th-time">Time</th>
+            <th class="th-time">Ao5</th>
+            <th class="th-time">Ao12</th>
             <th class="th-delete">Delete</th>
           </tr>
           <tr v-for="(time, index) in times.toReversed()" :key="index">
-            <td>{{ index+1 }}</td>
-            <td>{{ time }}</td>
-            <td>X</td>
+            <td>{{ Math.abs(index - times.length) }}</td>
+            <td>{{ time.time ?? '' }}</td>
+            <td>{{ time.ao5 ?? '' }}</td>
+            <td>{{ time.ao12 ?? '' }}</td>
+            <td v-on:click="deleteTime(Math.abs(index - times.length) - 1)"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512" class="delete-btn">
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+              </svg></td>
           </tr>
         </tbody>
       </table>
@@ -60,31 +61,28 @@ export default {
   },
   methods: {
     getCurrentTime() {
-      return this.times[this.times.length - 1]
-    },
-    getPB(){
-      return this.times.toSorted().slice(0,1)[0]
-    },
-    getAo(count) {
-      if (this.times.length < count) {
-        return "N/A"
+      if (this.times.length == 0) {
+        return ''
       }
 
-      let lastSolves = this.times.toReversed().slice(0, count).map(function (t) { return parseFloat(t) })
+      return this.times[this.times.length - 1]
+    },
+    getPB() {
+      let lastSolves = this.times
+        .slice()
+        .map(function (t) {
+          return parseFloat(t.time)
+        })
+        .toSorted()
+        .slice(0, 1)[0]
 
-      //remove de max and min values 
-      let min = Math.min(...lastSolves);
-      let max = Math.max(...lastSolves);
-      lastSolves.splice(lastSolves.indexOf(min), 1);
-      lastSolves.splice(lastSolves.indexOf(max), 1);
-
-      console.log(lastSolves, count)
-      let avg = lastSolves.reduce((accum, currnt) => {
-        return parseFloat(accum) + parseFloat(currnt)
-      }, 0) / (count - 2)
-
-      return avg.toFixed(2);
-
+      return lastSolves
+    },
+    deleteTime(index) {
+      this.$emit("deleteTime", index)
+    },
+    clearTimes() {
+      this.$emit("clearTimes")
     }
   }
 } 
@@ -100,6 +98,13 @@ export default {
 .history {
   display: flex;
   flex-direction: column;
+  height: 50vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.history::-webkit-scrollbar {
+  display: none;
 }
 
 #history-title {
@@ -171,8 +176,24 @@ button:hover {
 }
 
 .table {
-  overflow-y: auto;
   display: block;
   height: 50vh;
+}
+
+.delete-btn {
+  width: 15px;
+  height: 15px;
+  fill: #cacaca;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+  fill: #e4e4e4;
+}
+
+.resume-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
