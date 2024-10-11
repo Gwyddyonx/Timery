@@ -53,7 +53,7 @@ export default {
           this.timesBuffer = 0
         }
 
-        if (this.timesBuffer == 15) {
+        if (this.timesBuffer == 8) {
           this.isPrepared = true
         }
 
