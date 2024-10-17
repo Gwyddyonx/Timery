@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h1 :class="timerRunning || isPrepared ? 'green' : ''">{{ time }}</h1>
+    <h1 :class="timerRunning || isPrepared ? 'running' : ''">{{ time }}</h1>
   </div>
 </template>
 
@@ -147,7 +147,18 @@ h1 {
   cursor: default;
 }
 
-.green {
+.running {
   color: #28a138;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: #31313C;
+    margin: 0px;
+    top: 0;
+    left: 0;
+    font-size: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

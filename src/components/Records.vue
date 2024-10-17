@@ -13,9 +13,9 @@
         <div class="ao-best">
           <span class="tittle ao">Best</span>
           <span class="ao">&nbsp;&nbsp;Time: {{ getPB(5) }}</span>
-          <span class="ao">&nbsp;&nbsp;&nbsp;Ao5: {{ getCurrentTime(5).ao5 ?? '' }}</span>
-          <span class="ao">&nbsp;&nbsp;Ao12: {{ getCurrentTime(12).ao5 ?? '' }}</span>
-          <span class="ao">&nbsp;Ao100: {{ getCurrentTime(100).ao5 ?? '' }}</span>
+          <span class="ao">&nbsp;&nbsp;&nbsp;Ao5: {{ getPBao(5) ?? '-' }}</span>
+          <span class="ao">&nbsp;&nbsp;Ao12: {{ getPBao(12) ?? '-' }}</span>
+          <span class="ao">&nbsp;Ao100: {{ getPBao(100) ?? '-' }}</span>
         </div>
       </div>
       <button v-on:click="clearTimes">Clear Times</button>
@@ -83,6 +83,16 @@ export default {
     },
     clearTimes() {
       this.$emit("clearTimes")
+    },
+    getPBao(howMany){
+      let bestAo = this.times
+        .slice()
+        .map(function (t) {
+          return parseFloat(t["ao"+howMany])
+        })
+        .toSorted()
+        .slice(0, 1)[0]
+      return isNaN(bestAo) ? "-" : bestAo.toFixed(2);
     }
   }
 } 
@@ -177,7 +187,8 @@ button:hover {
 
 .table {
   display: block;
-  height: 50vh;
+  height: auto;
+  max-height: 80%;
 }
 
 .delete-btn {

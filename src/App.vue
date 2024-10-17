@@ -21,13 +21,14 @@ body, html{
   overflow: hidden;
 }
 body{
-  background-color: #2c3e50;
+  /*background-color: #2c3e50;*/
+  background-color: #282830;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #ffffff;
+  color: #d1d1d1;
 }
 </style>

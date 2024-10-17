@@ -1,26 +1,29 @@
 <template>
   <div class="main-container">
 
-    <div class="timer-container">
+    <div class="card-main">
 
-      <div class="title">
-        <h1>Timery</h1>
-        <svg xmlns="http://www.w3.org/2000/svg" class="clock" viewBox="0 0 512 512">
-          <path
-            d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-        </svg>
+      <div class="timer-container">
+
+        <div class="title">
+          <h1>Timery</h1>
+          <svg xmlns="http://www.w3.org/2000/svg" class="clock" viewBox="0 0 512 512">
+            <path
+              d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+          </svg>
+        </div>
+
+        <Timer ref="timer" @new-scramble="newScramble" />
+
+        <button v-on:click="newScramble()">New Scramble</button>
+        <h1 class="scramble">{{ scramble }}</h1>
+
       </div>
 
-      <Timer ref="timer" @new-scramble="newScramble" />
+      <div class="records-container">
 
-      <button v-on:click="newScramble()">New Scramble</button>
-      <h1 class="scramble">{{ scramble }}</h1>
-
-    </div>
-
-    <div class="records-container">
-
-      <Records :times="getTimerTimes()" @delete-time="deleteTime" @clear-times="clearTimes"/>
+        <Records :times="getTimerTimes()" @delete-time="deleteTime" @clear-times="clearTimes" />
+      </div>
     </div>
     <!--button v-on:click="clearTimes">Clear Times</button-->
   </div>
@@ -62,8 +65,8 @@ export default {
     getTimerTimes() {
       return this.$refs.timer ? this.$refs.timer.times : [];
     },
-    deleteTime(index){
-      console.log("deleteTime",this.$refs.timer.times)
+    deleteTime(index) {
+      console.log("deleteTime", this.$refs.timer.times)
       this.$refs.timer.times.splice(index, 1)
     }
   }
@@ -71,12 +74,11 @@ export default {
 </script>
 
 <style scoped>
-
-.main-container{
+.main-container {
   display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -93,7 +95,7 @@ h1 {
 }
 
 .scramble {
-  font-size: 30px;
+  font-size: 26px;
   cursor: default;
 }
 
@@ -120,7 +122,19 @@ button:hover {
   cursor: pointer;
 }
 
-.timer-container{
+.timer-container {
   width: 45%;
+}
+
+.card-main {
+  background-color: #31313C;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  width: 80%;
+}
+
+.records-container{
+  height: 80%;
 }
 </style>
