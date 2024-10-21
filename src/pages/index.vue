@@ -1,16 +1,10 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+  <HomeTimer />
 </template>
 
 <script lang="ts" setup>
   //
 </script>
-
-
 <style>
 
 body, html{
