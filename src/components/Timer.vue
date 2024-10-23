@@ -124,7 +124,9 @@ export default {
   },
   mounted() {
     this.setBlinds()
+    console.log("logtimes,before",this.times)
     this.times = localStorage.getItem("times") != undefined ? JSON.parse(localStorage.getItem("times")) : []
+    console.log("logtimes",this.times)
   },
 }
 </script>

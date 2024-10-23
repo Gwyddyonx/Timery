@@ -66,6 +66,7 @@ export default {
       return this.times[this.times.length - 1]
     },
     getPB() {
+      console.log("records-times",this.times)
       let lastSolves = this.times
         .slice()
         .map(function (t) {

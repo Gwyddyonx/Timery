@@ -6,12 +6,11 @@
 
       <Timer ref="timer" @new-scramble="newScramble" />
 
-
     </div>
 
     <div class="records-container">
 
-      <Records :times="getTimerTimes()" @delete-time="deleteTime" @clear-times="clearTimes" />
+      <Records :times="times" @delete-time="deleteTime" @clear-times="clearTimes" />
     </div>
 
   </div>
@@ -37,6 +36,7 @@ export default {
   },
   mounted() {
     this.newScramble();
+    this.times = this.$refs.timer ? this.$refs.timer.times : [];
   },
   methods: {
     newScramble() {
@@ -49,10 +49,8 @@ export default {
     clearTimes() {
       localStorage.removeItem('times');
       this.$refs.timer.times = [];
+      this.times = this.$refs.timer.times;
       this.resetTimer()
-    },
-    getTimerTimes() {
-      return this.$refs.timer ? this.$refs.timer.times : [];
     },
     deleteTime(index) {
       console.log("deleteTime", this.$refs.timer.times)
