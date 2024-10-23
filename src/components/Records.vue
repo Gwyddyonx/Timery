@@ -18,7 +18,8 @@
           <span class="ao">&nbsp;Ao100: {{ getPBao(100) ?? '-' }}</span>
         </div>
       </div>
-      <button v-on:click="clearTimes">Clear Times</button>
+      <!--button v-on:click="clearTimes">Clear Times</button-->
+      <v-btn rounded="lg" v-on:click="clearTimes" color="primary">Clear Times</v-btn>
     </div>
 
     <div class="history">
@@ -46,9 +47,6 @@
         </tbody>
       </table>
     </div>
-
-
-
 
   </div>
 </template>
@@ -164,25 +162,6 @@ export default {
   width: 100%;
   text-align: center;
   margin-bottom: 10px;
-}
-
-
-button {
-  width: 200px;
-  height: 40px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  border: none;
-  color: #2c3d50;
-  font-size: 17px;
-  font-family: monospace;
-  margin: 20px;
-}
-
-button:hover {
-  background: #f3f3f3;
-  color: #1d2936;
-  cursor: pointer;
 }
 
 .table {

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" >
     <h1 :class="timerRunning || isPrepared ? 'running' : ''">{{ time }}</h1>
   </div>
 </template>
@@ -145,20 +145,22 @@ h1 {
   font-family: monospace;
   font-size: 100px;
   cursor: default;
+  user-select: none;
 }
 
 .running {
   color: #28a138;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    background: #31313C;
-    margin: 0px;
-    top: 0;
-    left: 0;
-    font-size: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background: rgb(var(--v-theme-background));
+  margin: 0px;
+  top: 0;
+  left: 0;
+  font-size: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 </style>

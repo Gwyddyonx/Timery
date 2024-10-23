@@ -1,24 +1,35 @@
 <template>
-  <HomeTimer />
+  <div class="main-container">
+
+    <Toolbar />
+
+    <HomeTimer />
+
+    <Footer />
+
+  </div>
+
 </template>
 
 <script lang="ts" setup>
-  //
-</script>
-<style>
 
-body, html{
+//
+
+
+</script>
+
+
+<style>
+body,
+html {
   overflow: hidden;
+  height: 100vh;
 }
-body{
-  /*background-color: #2c3e50;*/
-  background-color: #282830;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #d1d1d1;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
 }
 </style>
