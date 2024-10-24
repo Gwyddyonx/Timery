@@ -18,13 +18,13 @@ THEMES
 const purpleDarkTheme = {
   dark: true,
   colors: {
-    background: '#190f32',      // Fondo oscuro y profundo
+    background: '#0f091e',      // Fondo oscuro y profundo
     surface: '#1A1A1A',         // Superficie oscura pero contrastante
     'surface-bright': '#242424', // Brillantez mínima para destacar algunos elementos
     'surface-light': '#2E2E2E',  // Tono claro para detalles
-    'surface-variant': '#4A148C', // Un púrpura oscuro y menos saturado
+    'c': '#4A148C', // Un púrpura oscuro y menos saturado
     'on-surface-variant': '#7E57C2',  // Menos saturación en el púrpura claro para no ser vibrante
-    primary: '#211245',         // Un morado profundo, casi negro, como color principal
+    primary: '#301b60',         // Un morado profundo, casi negro, como color principal
     'primary-darken-1': '#311B92',  // Morado más oscuro para variantes de contraste
     secondary: '#673AB7',       // Tono morado secundario intermedio
     'secondary-darken-1': '#4527A0',  // Secundario más oscuro para detalles importantes

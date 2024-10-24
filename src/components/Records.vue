@@ -1,4 +1,10 @@
 <template>
+  <div class="graphic-solves">
+    <v-sheet color="background">
+      <v-sparkline color="secondary" line-width="3" :model-value="getLastSolves()" padding="20"
+        smooth="false" auto-draw stroke-linecap="round" :labels="getLastSolves()"></v-sparkline>
+    </v-sheet>
+  </div>
   <div class="records-container">
 
     <div class="resume-container">
@@ -46,9 +52,12 @@
           </tr>
         </tbody>
       </table>
+
     </div>
 
-  </div>
+
+  </div>    
+
 </template>
 
 <script>
@@ -66,7 +75,7 @@ export default {
       return this.times[this.times.length - 1]
     },
     getPB() {
-      console.log("records-times",this.times)
+      console.log("records-times", this.times)
       let lastSolves = this.times
         .slice()
         .map(function (t) {
@@ -83,15 +92,26 @@ export default {
     clearTimes() {
       this.$emit("clearTimes")
     },
-    getPBao(howMany){
+    getPBao(howMany) {
       let bestAo = this.times
         .slice()
         .map(function (t) {
-          return parseFloat(t["ao"+howMany])
+          return parseFloat(t["ao" + howMany])
         })
         .toSorted()
         .slice(0, 1)[0]
       return isNaN(bestAo) ? "-" : bestAo.toFixed(2);
+    },
+    getLastSolves() {
+      // Get the last 10 solves to render the graphic
+      let lastSolves = this.times
+        .slice(-10)
+        .map(function (t) {
+          return parseFloat(t.time)
+        })
+
+      console.log(lastSolves)
+      return lastSolves
     }
   }
 } 
@@ -186,5 +206,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.graphic-solves{
+  width: 100%;
 }
 </style>

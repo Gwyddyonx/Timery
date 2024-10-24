@@ -109,7 +109,7 @@ export default {
 
 .scramble {
   font-family: monospace;
-  
+  font-size: 25px;
 }
 .timery{
   display: flex;
