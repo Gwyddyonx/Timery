@@ -2,10 +2,11 @@
   <v-footer class="text-center d-flex flex-column cursor-default" id="footer" color="primary">
     <div>
       <v-btn icon="mdi-github" class="mx-4" variant="text" v-on:click="openGithub"></v-btn>
+      <v-btn icon="mdi-instagram" class="mx-4" variant="text" v-on:click="openInstagram"></v-btn>
     </div>
 
     <div class="pt-0">
-      Timery is a free No-ads timer for speedcubers!
+      Timery is a free ad-free timer for speedcubers!
       <br>
       Enjoy!
     </div>
@@ -32,6 +33,9 @@ export default {
   methods: {
     openGithub() {
       window.location = "https://github.com/Gwyddyonx";
+    },
+    openInstagram(){
+      window.location = "https://www.instagram.com/gwyddyonx/";
     }
   }
 }

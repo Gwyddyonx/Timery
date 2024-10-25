@@ -59,6 +59,8 @@ export default {
   mounted() {
     this.usetheme = useTheme()
     this.newScramble();
+    this.usetheme.global.name = localStorage.getItem("theme") ?? ""
+    this.theme = localStorage.getItem("theme-id") ?? 0
   },
   methods: {
     handleThemeChange(newThemeIndex) {
@@ -70,8 +72,9 @@ export default {
         4: 'tealLightTheme',
         5: 'blueIndigoLightTheme'
       }
-      console.log("newtheme2", themeMapping[this.theme])
       this.usetheme.global.name = themeMapping[this.theme]
+      localStorage.setItem("theme", themeMapping[this.theme])
+      localStorage.setItem("theme-id", this.theme)
     },
     newScramble() {
       const util = new Utils();
@@ -111,7 +114,8 @@ export default {
   font-family: monospace;
   font-size: 25px;
 }
-.timery{
+
+.timery {
   display: flex;
   width: 200px;
 }

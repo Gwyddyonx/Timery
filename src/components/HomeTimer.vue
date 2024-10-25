@@ -2,15 +2,16 @@
 
   <div class="content-container" color="primary">
 
+    <Records :times="times" @delete-time="deleteTime" @clear-times="clearTimes" />
     <div class="timer-container">
 
       <Timer ref="timer" @new-scramble="newScramble" />
 
     </div>
 
-    <div class="records-container">
+    <div class="history-container">
 
-      <Records :times="times" @delete-time="deleteTime" @clear-times="clearTimes" />
+      <History :times="times" @delete-time="deleteTime" @clear-times="clearTimes" />
     </div>
 
   </div>
@@ -20,6 +21,7 @@
 import Timer from './Timer.vue';
 import Utils from '../services/Utils';
 import Records from './Records.vue';
+import History from './History.vue';
 
 export default {
   name: 'HomeTimer',
@@ -104,6 +106,9 @@ h1 {
 }
 
 .records-container {
+  height: 80%;
+}
+.history-container {
   height: 80%;
 }
 </style>
