@@ -109,8 +109,11 @@ h1 {
 .records-container {
   height: 80%;
 }
+
 .history-container {
   height: 100%;
   width: 25%;
+  display: flex;
+  flex-direction: column;
 }
 </style>

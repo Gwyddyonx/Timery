@@ -1,5 +1,5 @@
 <template>
-  <div class="graphic-solves">
+  <!--div class="graphic-solves">
     <h3>
       Performance of the last 10 solves
     </h3>
@@ -7,7 +7,7 @@
       <v-sparkline color="secondary" line-width="3" :model-value="getLastSolves()" padding="20" smooth="false" auto-draw
         stroke-linecap="round" :labels="getLastSolves()"></v-sparkline>
     </v-sheet>
-  </div>
+  </div-->
 
   <div class="history">
     <span id="history-title">Solves: {{ times.length }}</span>
@@ -81,7 +81,7 @@ export default {
   height: 50vh;
   overflow-y: scroll;
   scrollbar-width: none;*/
-  height: 70%;
+  height: 80%;
   display: flex;
   flex-direction: column;
 }

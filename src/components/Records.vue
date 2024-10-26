@@ -1,5 +1,14 @@
 <template>
   <div class="resume-container">
+    <div class="graphic-solves">
+      <h3>
+        Performance of the last 10 solves
+      </h3>
+      <v-sheet color="background">
+        <v-sparkline color="secondary" line-width="3" :model-value="getLastSolves()" padding="20" smooth="false"
+          auto-draw stroke-linecap="round" :labels="getLastSolves()"></v-sparkline>
+      </v-sheet>
+    </div>
     <div class="resume">
       <div class="ao-container">
         <span class="tittle ao">Current</span>
@@ -42,7 +51,9 @@
       </div>
     </div>
     <!--button v-on:click="clearTimes">Clear Times</button-->
+    <div class="clear-btn-container">
     <v-btn rounded="lg" v-on:click="clearTimes" color="primary" class="clear-times">Clear Times</v-btn>
+  </div>
   </div>
 
 
@@ -100,7 +111,7 @@ export default {
 
       console.log(lastSolves)
       return lastSolves
-    }
+    },
   }
 } 
 </script>
@@ -112,6 +123,7 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 30%;
+  gap: 60px;
 }
 
 .resume {
@@ -171,12 +183,18 @@ export default {
   fill: #e4e4e4;
 }
 
-
 .graphic-solves {
   width: 100%;
+  margin-top: 30px;
+  height: 20%;
 }
 
-.clear-times{
-  margin-top: 30px;
+.clear-times {
+  margin-top: 0px;
 }
+
+h3{
+  text-align: center
+}
+
 </style>
