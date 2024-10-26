@@ -68,7 +68,8 @@ export default {
   height: 80vh;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: flex-start;
 }
 
 h1 {
@@ -96,7 +97,7 @@ h1 {
 }
 
 .timer-container {
-  width: 45%;
+  width: 40%;
 }
 
 .card-main {
@@ -109,6 +110,7 @@ h1 {
   height: 80%;
 }
 .history-container {
-  height: 80%;
+  height: 100%;
+  width: 25%;
 }
 </style>

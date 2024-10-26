@@ -1,28 +1,50 @@
 <template>
-  <div class="records-container">
-
-    <div class="resume-container">
-      <div class="resume">
-        <div class="ao-container">
-          <span class="tittle ao">Current</span>
-          <span class="ao">&nbsp;Time: {{ getCurrentTime().time ?? '' }}</span>
-          <span class="ao">&nbsp;&nbsp;Ao5: {{ getCurrentTime().ao5 ?? '' }}</span>
-          <span class="ao">&nbsp;Ao12: {{ getCurrentTime().ao12 ?? '' }}</span>
-          <span class="ao">Ao100: {{ getCurrentTime().ao100 ?? '' }}</span>
+  <div class="resume-container">
+    <div class="resume">
+      <div class="ao-container">
+        <span class="tittle ao">Current</span>
+        <div class="ao-field">
+          <div class="ao">Time:</div>
+          <div class="ao">{{ getCurrentTime().time ?? '' }}</div>
         </div>
-        <div class="ao-best">
-          <span class="tittle ao">Best</span>
-          <span class="ao">&nbsp;&nbsp;Time: {{ getPB(5) }}</span>
-          <span class="ao">&nbsp;&nbsp;&nbsp;Ao5: {{ getPBao(5) ?? '-' }}</span>
-          <span class="ao">&nbsp;&nbsp;Ao12: {{ getPBao(12) ?? '-' }}</span>
-          <span class="ao">&nbsp;Ao100: {{ getPBao(100) ?? '-' }}</span>
+        <div class="ao-field">
+          <div class="ao">Ao5:</div>
+          <div class="ao">{{ getCurrentTime().ao5 ?? '' }}</div>
+        </div>
+        <div class="ao-field">
+          <div class="ao">Ao12:</div>
+          <div class="ao">{{ getCurrentTime().ao12 ?? '' }}</div>
+        </div>
+        <div class="ao-field">
+          <div class="ao">Ao100:</div>
+          <div class="ao">{{ getCurrentTime().ao100 ?? '' }}</div>
         </div>
       </div>
-      <!--button v-on:click="clearTimes">Clear Times</button-->
-      <v-btn rounded="lg" v-on:click="clearTimes" color="primary">Clear Times</v-btn>
-    </div>
+      <div class="ao-container">
+        <span class="tittle ao">Best</span>
+        <div class="ao-field">
+          <div class="ao">Time:</div>
+          <div class="ao">{{ getPB() }}</div>
+        </div>
+        <div class="ao-field">
+          <div class="ao">Ao5:</div>
+          <div class="ao">{{ getPBao(5) ?? '-' }}</div>
+        </div>
+        <div class="ao-field">
+          <div class="ao">Ao12:</div>
+          <div class="ao">{{ getPBao(12) ?? '-' }}</div>
+        </div>
+        <div class="ao-field">
+          <div class="ao">Ao100:</div>
+          <div class="ao">{{ getPBao(100) ?? '-' }}</div>
+        </div>
 
-  </div>    
+      </div>
+    </div>
+    <!--button v-on:click="clearTimes">Clear Times</button-->
+    <v-btn rounded="lg" v-on:click="clearTimes" color="primary" class="clear-times">Clear Times</v-btn>
+  </div>
+
 
 </template>
 
@@ -85,64 +107,44 @@ export default {
 
 
 <style scoped>
+.resume-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
 .resume {
   display: flex;
   flex-direction: row;
-  margin: 30px;
-}
-
-.history {
-  display: flex;
-  flex-direction: column;
-  height: 50vh;
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-
-.history::-webkit-scrollbar {
-  display: none;
-}
-
-#history-title {
-  font-size: 20px;
-  margin: 20px;
-}
-
-.records-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  width: 100%;
+  margin: auto;
   justify-content: center;
-  gap: 50px;
 }
 
 .ao-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 45%;
+
 }
 
-.ao-best {
+.ao-field {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.th1 {
-  width: 30px;
-}
-
-.th-time {
-  width: 70px;
-}
-
-.th-delete {
-  width: 50px;
 }
 
 .ao {
-  font-family: monospace;
+  width: 50%;
   font-size: 20px;
+  text-align: end;
+}
+
+.ao2 {
+  width: 50%;
+  font-size: 20px;
+  text-align: start;
 }
 
 .tittle {
@@ -169,12 +171,12 @@ export default {
   fill: #e4e4e4;
 }
 
-.resume-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.graphic-solves{
+
+.graphic-solves {
   width: 100%;
+}
+
+.clear-times{
+  margin-top: 30px;
 }
 </style>

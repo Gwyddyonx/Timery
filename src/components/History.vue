@@ -8,31 +8,34 @@
         stroke-linecap="round" :labels="getLastSolves()"></v-sparkline>
     </v-sheet>
   </div>
+
   <div class="history">
     <span id="history-title">Solves: {{ times.length }}</span>
-    <table class="table">
-      <tbody>
+    <v-table class="table" background="#fff">
+      <thead>
         <tr>
-          <th class="th1">#</th>
-          <th class="th-time">Time</th>
-          <th class="th-time">Ao5</th>
-          <th class="th-time">Ao12</th>
-          <th class="th-delete">Delete</th>
+          <th class="text-left">#</th>
+          <th class="text-left">Time</th>
+          <th class="text-left">Ao5</th>
+          <th class="text-left">Ao12</th>
+          <th class="text-left">Delete</th>
         </tr>
+      </thead>
+      <tbody>
         <tr v-for="(time, index) in times.toReversed()" :key="index">
           <td>{{ Math.abs(index - times.length) }}</td>
           <td>{{ time.time ?? '' }}</td>
           <td>{{ time.ao5 ?? '' }}</td>
           <td>{{ time.ao12 ?? '' }}</td>
-          <td v-on:click="deleteTime(Math.abs(index - times.length) - 1)"><svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 384 512" class="delete-btn">
+          <td v-on:click="deleteTime(Math.abs(index - times.length) - 1)" class="delete-td">
+            <svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512" class="delete-btn text-center" >
               <path
                 d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
             </svg></td>
         </tr>
       </tbody>
-    </table>
-
+    </v-table>
   </div>
 
 </template>
@@ -73,15 +76,23 @@ export default {
 }
 
 .history {
-  display: flex;
+  /*display: flex;
   flex-direction: column;
   height: 50vh;
   overflow-y: scroll;
-  scrollbar-width: none;
+  scrollbar-width: none;*/
+  height: 70%;
+  display: flex;
+  flex-direction: column;
 }
 
-.history::-webkit-scrollbar {
-  display: none;
+.table {
+  height: auto;
+  overflow-y: auto;
+}
+
+.table div{
+  overflow: hidden;
 }
 
 #history-title {
@@ -108,16 +119,9 @@ export default {
   margin-bottom: 10px;
 }
 
-.table {
-  display: block;
-  height: auto;
-  max-height: 80%;
-}
-
 .delete-btn {
   width: 15px;
-  height: 15px;
-  fill: #cacaca;
+  fill: #949494;
 }
 
 .delete-btn:hover {
@@ -133,5 +137,16 @@ export default {
 
 .graphic-solves {
   width: 100%;
+  margin-top: 30px;
+  height: 20%;
+}
+
+.delete-td{
+  display: flex;
+  justify-content: center;
+}
+
+tbody, thead{
+  background: rgb(var(--v-theme-background));
 }
 </style>

@@ -148,6 +148,7 @@ h1 {
   font-size: 100px;
   cursor: default;
   user-select: none;
+  text-align: center;
 }
 
 .running {
