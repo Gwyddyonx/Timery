@@ -8,7 +8,6 @@
       <h2 class="title">Timery</h2>
     </div>
 
-
     <div class="scramble-container">
       <h1 class="scramble">{{ scramble }}</h1>
       <v-btn rounded="lg" v-on:click="newScramble()" color="secondary" variant="outlined">New Scramble</v-btn>
@@ -60,7 +59,7 @@ export default {
     this.usetheme = useTheme()
     this.newScramble();
     this.usetheme.global.name = localStorage.getItem("theme") ?? ""
-    this.theme = localStorage.getItem("theme-id") ?? 0
+    this.theme = localStorage.getItem("theme-id") ?? 0;
   },
   methods: {
     handleThemeChange(newThemeIndex) {
