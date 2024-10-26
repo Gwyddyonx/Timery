@@ -55,6 +55,7 @@ export default {
     },
     deleteTime(index) {
       this.$refs.timer.times.splice(index, 1)
+      localStorage.setItem('times', JSON.stringify(this.$refs.timer.times))
     }
   }
 };
