@@ -1,9 +1,9 @@
 <template>
   <div class="main-container">
 
-    <Toolbar />
+    <Toolbar ref="toolbar"/>
 
-    <HomeTimer />
+    <HomeTimer @new-scramble="newScramble"/>
 
     <Footer />
 
@@ -11,10 +11,15 @@
 
 </template>
 
-<script lang="ts" setup>
-
-//
-
+<script>
+export default {
+  name: 'index',
+  methods: {
+    newScramble(){
+      this.$refs.toolbar.newScramble()
+    }
+  }
+}
 
 </script>
 

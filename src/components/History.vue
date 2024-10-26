@@ -61,7 +61,6 @@ export default {
           return parseFloat(t.time)
         })
 
-      console.log(lastSolves)
       return lastSolves
     }
   }

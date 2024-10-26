@@ -42,8 +42,7 @@ export default {
   },
   methods: {
     newScramble() {
-      const util = new Utils();
-      this.scramble = util.getScramble();
+      this.$emit("newScramble");
     },
     resetTimer() {
       this.$refs.timer.restartTimer();
@@ -55,7 +54,6 @@ export default {
       this.resetTimer()
     },
     deleteTime(index) {
-      console.log("deleteTime", this.$refs.timer.times)
       this.$refs.timer.times.splice(index, 1)
     }
   }
@@ -65,7 +63,7 @@ export default {
 <style scoped>
 .content-container {
   display: flex;
-  height: 80vh;
+  height: 70vh;
   width: 100%;
   align-items: center;
   /* justify-content: center; */
@@ -115,5 +113,6 @@ h1 {
   width: 25%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 </style>
